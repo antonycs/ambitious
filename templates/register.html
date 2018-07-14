@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ambitious :: Register</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sb-admin.css" rel="stylesheet">
+
+  </head>
+
+  <body class="bg-dark">
+
+    <div class="container">
+
+      <div class="card card-register mx-auto mt-5">
+        <div class="card-header">
+          Register an Account
+        </div>
+        <div class="card-body">
+          <form action = "/registeration" method = "post">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <label for="fname">First name</label>
+                  <input type="text" class="form-control" id="fname" name="fname" aria-describedby="nameHelp" placeholder="Enter first name">
+                </div>
+                <div class="col-md-6">
+                  <label for="sname">Last name</label>
+                  <input type="text" class="form-control" id="sname" name="sname" aria-describedby="nameHelp" placeholder="Enter last name">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <label for="password1">Password</label>
+                  <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+                </div>
+                <div class="col-md-6">
+                  <label for="password2">Confirm password</label>
+                  <input type="password" class="form-control" id="password2" placeholder="Confirm password">
+                </div>
+              </div>
+            </div>
+
+            <input type="submit" disabled="true" value="Register" class="btn btn-primary btn-block" id="regbutton"/>
+          </form>
+          <div class="text-center" id="error">
+            
+          </div>
+        </div>
+          <div class="text-center">
+            <a class="d-block small mt-3" href="{{url_for('lpage')}}">Login Page</a>
+            <a class="d-block small" href="{{url_for('forgotpass')}}">Forgot Password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/popper/popper.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Login form action -->
+    <script type="text/javascript">
+    unique1=false;
+      // $("#regbutton").click(function(e){
+      //   e.preventDefault();
+      //   //alert("hi");
+      //   var fname = $("#fname").val();
+      //   var sname = $("#sname").val();
+      //   var email = $("#email").val();
+      //   var password1 = $("#password1").val();
+      //   var password2 = $("#password2").val();
+      //   //alert(email+" "+password);
+      //   if(password1 == password2){
+      //     alert("Hi" +fname+". Your account is registered.");
+      //     window.location = "dashboard.html";
+      //   }else{
+      //     $("#error").html("Something wrong. plz try again later!");
+      //   }
+      // });
+      $("#password2").on('input', function() {
+    if($("#password1").val()==$("#password2").val())
+    {
+      if(unique1==true){
+      document.getElementById("regbutton").disabled = false;}
+    }else{
+      document.getElementById("regbutton").disabled = true;
+    }
+    });
+    $("#email").blur(function()
+    {
+      console.log("test");
+      
+      var email=$("#email").val();
+      $.post("/uniquecheck",{"email":email}).done(function(data){
+        var obj=JSON.parse(data);
+        console.log(obj);
+        if(obj.status=='yes')
+        {
+          unique1=true;
+          // email is unique
+        }else{
+          document.getElementById("regbutton").disabled = false;
+          $("#password1").attr('title', 'Above email has already an account!');
+          unique1=false;
+          //email is duplicate
+          //error:change the mail id
+        }
+        
+      })
+    });
+
+    </script>
+  </body>
+
+</html>

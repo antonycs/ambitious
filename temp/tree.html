@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+	<title> Chart emulation </title>
+	<link rel="stylesheet" href="/static/Treant.css">
+	<link rel="stylesheet" href="/static/super-simple.css">
+</head>
+<body>
+	<div class="chart" id="OrganiseChart-simple" style="width:700px; height: 350px">
+	</div>
+	
+	<script src="/static/raphael.js"></script>
+	<script src="/static/Treant.js"></script>
+	<script src="/static/super-simple.js"></script>
+
+	<script>
+		simple_chart_config = {
+    chart: {
+        container: "#OrganiseChart-simple"
+    },
+    
+    nodeStructure: {
+        text: { name: "SSLC" },
+        children: [
+            {
+                text: { name: "Science" },children:[{text: { name:"Engineering" }},{text:{name:"Medical"}} ] 
+            },
+            {
+                text: { name: "Commerce" },children:[{text:{name:"BBA"}},{text:{name:"B.COM"}}]
+            },
+            {
+                text: { name: "Humanities" },children:[{text:{name:"BA"}},{text:{name:"BBA"}}]
+            }
+        ]
+    }
+};
+		var amChat=new Treant( simple_chart_config );
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ambitious :: Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sb-admin.css" rel="stylesheet">
+
+  </head>
+
+  <body class="bg-dark">
+
+    <div class="container">
+
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">
+          Login
+        </div>
+        <div class="card-body">
+          <form action = "/login" method = "post">
+            <div class="form-group">
+              <label for="username">Email address</label>
+              <input type="email" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password"required>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  Remember Password
+                </label>
+              </div>
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary btn-block" id="loginbutton"/>
+          </form>
+          <div class="text-center" id="error" style="color:red;">
+          </div>
+          <div class="text-center">
+            <a class="d-block small mt-3" href="{{url_for('register')}}">Register an Account</a>
+            <a class="d-block small" href="{{url_for('forgotpass')}}">Forgot Password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/popper/popper.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Login form action -->
+    <script type="text/javascript">
+      // $("#loginbutton").click(function(e){
+      //   e.preventDefault();
+      //   //alert("hi");
+      //   var email = $("#username").val();
+      //   var password = $("#password").val();
+      //   console.log(email+" "+password);
+      //   $.post("/login", {
+      //   "username": email,
+      //   "password": password
+      // }).done(
+      // //   function(data) {
+
+      // //   var obj = JSON.parse(data);
+      // //   if(obj.status=='ok'){
+      // //    // window.location = "/templates/dashboard.html";
+      // //    console.log(obj);
+      // //   }
+        
+             
+
+
+          
+      // // }
+      // );
+
+
+      //   // if((email =='admin@gmail.com') && (password=='admin')){
+      //   //   window.location = "dashboard.html";
+      //   // }else{
+      //   //   $("#error").html("Username and password is incorrect !");
+      //   // }
+      // });
+    </script>
+  </body>
+
+</html>
